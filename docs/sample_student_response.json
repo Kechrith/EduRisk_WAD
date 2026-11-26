@@ -1,0 +1,33 @@
+{
+  "status": "success",
+  "count": 3,
+  "students": [
+    {
+      "student_id": "S001",
+      "student_name": "Sok Dara",
+      "course": "Web App",
+      "score": 85,
+      "attendance": 90,
+      "study_hours": 12,
+      "risk_level": "Low Risk"
+    },
+    {
+      "student_id": "S002",
+      "student_name": "Chan Sophea",
+      "course": "Python",
+      "score": 68,
+      "attendance": 75,
+      "study_hours": 8,
+      "risk_level": "Medium Risk"
+    },
+    {
+      "student_id": "S003",
+      "student_name": "Vuthy",
+      "course": "Statistics",
+      "score": 45,
+      "attendance": 55,
+      "study_hours": 4,
+      "risk_level": "High Risk"
+    }
+  ]
+}

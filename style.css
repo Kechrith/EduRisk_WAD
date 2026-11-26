@@ -1,0 +1,385 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Outfit:wght@300;400;500;600&display=swap');
+
+/* ---------- Color tokens ---------- */
+:root {
+    --bg: #0b0b1a;
+    --glass: rgba(255, 255, 255, 0.05);
+    --glass-strong: rgba(255, 255, 255, 0.09);
+    --border: rgba(255, 255, 255, 0.12);
+    --text: #e6e6f5;
+    --muted: #9b9bc0;
+    --violet: #a78bfa;
+    --cyan: #22d3ee;
+    --pink: #f472b6;
+    --amber: #fbbf24;
+    --green: #34d399;
+    --red: #f87171;
+}
+
+/* ---------- Base ---------- */
+html, body, .stApp, .stMarkdown, p, label, input, textarea, button {
+    font-family: 'Outfit', sans-serif;
+}
+
+.stApp {
+    background:
+        radial-gradient(circle at 15% 10%, rgba(167, 139, 250, 0.25), transparent 40%),
+        radial-gradient(circle at 85% 20%, rgba(34, 211, 238, 0.18), transparent 40%),
+        radial-gradient(circle at 50% 95%, rgba(244, 114, 182, 0.15), transparent 45%),
+        var(--bg);
+    background-attachment: fixed;
+    color: var(--text);
+}
+
+/* Hide default Streamlit chrome */
+header[data-testid="stHeader"] {
+    background: transparent;
+}
+
+#MainMenu, footer {
+    visibility: hidden;
+}
+
+.block-container {
+    padding-top: 2.5rem;
+    max-width: 1250px;
+}
+
+/* ---------- Headings ---------- */
+h1, h2, h3 {
+    font-family: 'Space Grotesk', sans-serif !important;
+    letter-spacing: -0.02em;
+}
+
+h1 {
+    font-weight: 700 !important;
+    background: linear-gradient(90deg, var(--violet), var(--cyan), var(--pink));
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 6s linear infinite;
+}
+
+h2, h3 {
+    color: var(--text) !important;
+    font-weight: 600 !important;
+    position: relative;
+    padding-left: 0.9rem;
+}
+
+h2::before, h3::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 20%;
+    height: 60%;
+    width: 4px;
+    border-radius: 4px;
+    background: linear-gradient(180deg, var(--violet), var(--cyan));
+}
+
+@keyframes shine {
+    to { background-position: 200% center; }
+}
+
+/* ---------- Sidebar ---------- */
+[data-testid="stSidebar"] {
+    background: rgba(15, 15, 35, 0.75);
+    backdrop-filter: blur(18px);
+    border-right: 1px solid var(--border);
+}
+
+[data-testid="stSidebar"] h1 {
+    font-size: 1.6rem;
+    padding-left: 0;
+}
+
+/* Turn the radio buttons into a pill-shaped nav menu */
+[data-testid="stSidebar"] [role="radiogroup"] {
+    gap: 0.4rem;
+}
+
+[data-testid="stSidebar"] [role="radiogroup"] label {
+    width: 100%;
+    padding: 0.65rem 1rem;
+    border-radius: 12px;
+    border: 1px solid transparent;
+    transition: all 0.25s ease;
+    cursor: pointer;
+}
+
+[data-testid="stSidebar"] [role="radiogroup"] label > div:first-child {
+    display: none;
+}
+
+[data-testid="stSidebar"] [role="radiogroup"] label:hover {
+    background: var(--glass-strong);
+    transform: translateX(4px);
+}
+
+[data-testid="stSidebar"] [role="radiogroup"] label:has(input:checked) {
+    background: linear-gradient(90deg, rgba(167, 139, 250, 0.35), rgba(34, 211, 238, 0.15));
+    border-color: rgba(167, 139, 250, 0.5);
+    box-shadow: 0 0 18px rgba(167, 139, 250, 0.3);
+}
+
+[data-testid="stSidebar"] [role="radiogroup"] label:has(input:checked) p {
+    font-weight: 600;
+    color: #ffffff;
+}
+
+/* ---------- Metric cards ---------- */
+[data-testid="stMetric"] {
+    --accent: var(--violet);
+    background: var(--glass);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 1.2rem 1.4rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+[data-testid="stMetric"]::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--accent);
+    box-shadow: 0 0 14px var(--accent);
+}
+
+[data-testid="stMetric"]:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent);
+    box-shadow: 0 12px 30px -10px var(--accent);
+}
+
+/* A different accent colour for each of the 4 metric columns */
+[data-testid="stColumn"]:nth-child(1) [data-testid="stMetric"],
+[data-testid="column"]:nth-child(1) [data-testid="stMetric"] { --accent: var(--violet); }
+[data-testid="stColumn"]:nth-child(2) [data-testid="stMetric"],
+[data-testid="column"]:nth-child(2) [data-testid="stMetric"] { --accent: var(--cyan); }
+[data-testid="stColumn"]:nth-child(3) [data-testid="stMetric"],
+[data-testid="column"]:nth-child(3) [data-testid="stMetric"] { --accent: var(--green); }
+[data-testid="stColumn"]:nth-child(4) [data-testid="stMetric"],
+[data-testid="column"]:nth-child(4) [data-testid="stMetric"] { --accent: var(--pink); }
+
+[data-testid="stMetricLabel"] p {
+    color: var(--muted) !important;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.8rem !important;
+}
+
+[data-testid="stMetricValue"] {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 2.2rem !important;
+    color: #ffffff;
+}
+
+/* ---------- Buttons ---------- */
+.stButton > button,
+[data-testid="stFormSubmitButton"] button,
+[data-testid="stDownloadButton"] button {
+    background: linear-gradient(90deg, var(--violet), var(--cyan));
+    color: #0b0b1a !important;
+    border: none;
+    border-radius: 999px;
+    padding: 0.55rem 1.6rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stButton > button:hover,
+[data-testid="stFormSubmitButton"] button:hover,
+[data-testid="stDownloadButton"] button:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 0 24px rgba(167, 139, 250, 0.6);
+}
+
+/* ---------- Inputs ---------- */
+[data-baseweb="select"] > div,
+[data-baseweb="input"],
+[data-testid="stNumberInput"] input {
+    background: var(--glass) !important;
+    border-color: var(--border) !important;
+    border-radius: 12px !important;
+}
+
+[data-baseweb="select"] > div:hover,
+[data-baseweb="input"]:focus-within {
+    border-color: var(--violet) !important;
+    box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.2);
+}
+
+/* ---------- Form ---------- */
+[data-testid="stForm"] {
+    background: var(--glass);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 1.8rem;
+}
+
+/* ---------- Dataframe ---------- */
+[data-testid="stDataFrame"] {
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px -15px rgba(167, 139, 250, 0.5);
+}
+
+/* ---------- Charts ---------- */
+[data-testid="stVegaLiteChart"],
+[data-testid="stArrowVegaLiteChart"] {
+    background: var(--glass);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 0.8rem;
+}
+
+/* ---------- Alerts ---------- */
+[data-testid="stAlert"] {
+    border-radius: 14px;
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border);
+}
+
+/* ---------- Scrollbar ---------- */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--violet), var(--cyan));
+    border-radius: 10px;
+}
+
+/* =====================================================
+   Extra polish (CSS only - no app.py changes needed)
+   ===================================================== */
+
+/* ---------- Page entrance animation ---------- */
+.block-container > div {
+    animation: fadeUp 0.5s ease both;
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- Headings sizing ---------- */
+.block-container h1 {
+    font-size: 2.8rem !important;
+    padding-bottom: 0.2rem !important;
+}
+
+.block-container p {
+    color: var(--text);
+    line-height: 1.65;
+}
+
+/* Subheaders get some breathing room */
+.block-container h3 {
+    margin-top: 1.6rem !important;
+}
+
+/* ---------- Sidebar title & nav icons ---------- */
+[data-testid="stSidebar"] h1 {
+    padding-bottom: 1rem !important;
+    margin-bottom: 0.8rem;
+    border-bottom: 1px solid var(--border);
+}
+
+[data-testid="stSidebar"] [data-testid="stWidgetLabel"] p {
+    color: var(--muted) !important;
+    font-size: 0.75rem !important;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+}
+
+[data-testid="stSidebar"] [role="radiogroup"] label p::before {
+    display: inline-block;
+    width: 1.8rem;
+}
+[data-testid="stSidebar"] [role="radiogroup"] label:nth-of-type(1) p::before { content: "🏠"; }
+[data-testid="stSidebar"] [role="radiogroup"] label:nth-of-type(2) p::before { content: "📊"; }
+[data-testid="stSidebar"] [role="radiogroup"] label:nth-of-type(3) p::before { content: "🗂️"; }
+[data-testid="stSidebar"] [role="radiogroup"] label:nth-of-type(4) p::before { content: "🩺"; }
+[data-testid="stSidebar"] [role="radiogroup"] label:nth-of-type(5) p::before { content: "ℹ️"; }
+
+/* ---------- Alerts: coloured left accent ---------- */
+[data-testid="stAlert"] > div {
+    border-radius: 14px;
+}
+
+[data-testid="stAlertContentSuccess"],
+[data-testid="stAlertContentInfo"],
+[data-testid="stAlertContentWarning"],
+[data-testid="stAlertContentError"] {
+    font-weight: 500;
+}
+
+[data-testid="stAlert"]:has([data-testid="stAlertContentSuccess"]) { border-left: 4px solid var(--green); }
+[data-testid="stAlert"]:has([data-testid="stAlertContentInfo"])    { border-left: 4px solid var(--cyan); }
+[data-testid="stAlert"]:has([data-testid="stAlertContentWarning"]) { border-left: 4px solid var(--amber); }
+[data-testid="stAlert"]:has([data-testid="stAlertContentError"])   { border-left: 4px solid var(--red); }
+
+/* ---------- Charts (newer Streamlit test ids) ---------- */
+[data-testid="stElementContainer"]:has(.vega-embed) {
+    background: var(--glass);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 0.8rem;
+}
+
+.vega-embed summary {
+    opacity: 0.4;
+}
+
+/* ---------- Number input +/- buttons ---------- */
+[data-testid="stNumberInput"] button {
+    background: var(--glass-strong) !important;
+    border: none !important;
+    color: var(--text) !important;
+}
+
+[data-testid="stNumberInput"] button:hover {
+    background: var(--violet) !important;
+    color: var(--bg) !important;
+}
+
+/* ---------- Form labels ---------- */
+[data-testid="stForm"] [data-testid="stWidgetLabel"] p {
+    color: var(--muted) !important;
+    font-weight: 500;
+}
+
+/* ---------- JSON / list output (Column Names) ---------- */
+[data-testid="stJson"] {
+    background: var(--glass) !important;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 0.8rem 1rem;
+}
+
+/* ---------- Dataframe hover lift ---------- */
+[data-testid="stDataFrame"] {
+    transition: box-shadow 0.25s ease;
+}
+
+[data-testid="stDataFrame"]:hover {
+    box-shadow: 0 14px 40px -15px rgba(34, 211, 238, 0.5);
+}

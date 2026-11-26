@@ -1,0 +1,40 @@
+# Virtual environments
+env/
+venv/
+.venv/
+
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Packaging / build output
+build/
+dist/
+*.egg-info/
+
+# Streamlit secrets (config.toml is kept)
+.streamlit/secrets.toml
+
+# Environment variables and credentials
+.env
+.env.*
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Editors and IDEs
+.vscode/
+.idea/
+*.swp
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
